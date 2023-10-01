@@ -1,0 +1,86 @@
+{% extends 'base.html' %}{% block title %}Laptops{% endblock title %}
+<!--    -->
+{% load static %}
+<!--Banner Slider-->
+{% block main-content %}
+<div class="container my-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="list-group">
+        <a
+          href="{% url 'laptop' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >All Laptops
+        </a>
+        <a
+          href="{% url 'laptop' 'Apple' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >Apple
+        </a>
+        <a
+          href="{% url 'laptop' 'Asus' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >Asus
+        </a>
+        <a
+          href="{% url 'laptop' 'Dell' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >Dell
+        </a>
+        <a
+          href="{% url 'laptop' 'HP' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >HP
+        </a>
+        <a
+          href="{% url 'laptop' 'Acer' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >Acer
+        </a>
+        <a
+          href="{% url 'laptop' 'below' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >Below 50000
+        </a>
+        <a
+          href="{% url 'laptop' 'above' %}"
+          class="list-group-item list-group-item-action"
+          aria-current="true"
+          >Above 50000
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="row">
+        {% for product in laptops %}
+        <div class="col-sm-4 text-center mb-5">
+          <a href="{% url 'product-detail' product.id %}" class="btn">
+            <div class="item">
+              <img
+                src=" {{ product.product_image.url }}"
+                alt=""
+                height="300"
+                width="300"
+                class="img-responsive"
+              />
+              <div class="fw-bold">{{ product.title }}</div>
+              <div class="fw-bold">Rs. {{ product.discount_price }}</div>
+              <small class="fw-light text-decoration-line-through">
+                {{product.selling_price}}
+              </small>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main-content %}
